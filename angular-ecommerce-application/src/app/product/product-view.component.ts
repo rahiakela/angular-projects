@@ -1,0 +1,48 @@
+import {Component, OnInit} from '@angular/core';
+import {Product, ProductService} from './product.service';
+import {CartItem, CartService} from '../cart/cart.service';
+import {ActivatedRoute} from '@angular/router';
+
+@Component({
+    selector: 'db-product-view',
+    templateUrl: './product-view.component.html'
+})
+export class ProductViewComponent implements OnInit {
+
+    product: Product;
+    cartItem: CartItem;
+
+    // getter methods for count and amount properties
+    get quantity(): number {
+        return this.cartItem ? this.cartItem.count : 0;
+    }
+
+    get amount(): number {
+        return this.cartItem ? this.cartItem.amount : 0;
+    }
+
+    constructor(private  route: ActivatedRoute, private productService: ProductService, private cartService: CartService) {}
+
+    ngOnInit(): void {
+        this.route
+            .params
+            .subscribe(params => {
+                // Get the product id
+                let id: string = params['id'];
+                // Return the product from ProductService
+                this.productService.getProduct(id).subscribe((product: Product) => this.product = product);
+                // Return the cart item
+                this.cartItem = this.cartService.findItem(id);
+            });
+    }
+
+    addToCart() {
+        this.cartItem = this.cartService.addProduct(this.product);
+    }
+
+    removeFromCart() {
+        this.cartItem = this.cartService.removeProduct(this.product);
+    }
+
+}
+

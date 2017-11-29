@@ -1,0 +1,59 @@
+import {Component, OnInit} from '@angular/core';
+import {Product, ProductService} from './product.service';
+import {ActivatedRoute} from '@angular/router';
+import {CartService} from '../cart/cart.service';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+
+@Component({
+    selector: 'db-product-grid',
+    templateUrl: './product-grid.component.html'
+})
+export class ProductGridComponent implements OnInit {
+    products: Observable<Product[]>;
+
+    constructor(private router: ActivatedRoute, private productService: ProductService, private cartService: CartService) { }
+
+    ngOnInit(): void {
+        this.router
+            .queryParams
+            .debounceTime(300) // wait for 300ms pause in events
+            .distinctUntilChanged() // only changed values pass
+            .subscribe(params => {
+                let category: string = params['category'];
+                let search: string = params['search'];
+                // Return filtered data from getProducts function
+                this.products = this.productService.getProducts(category, search).map(this.transform);
+            });
+    }
+
+    transform(source: Product[]) {
+        let index = 0;
+        let length = source.length;
+
+        let products = [];
+
+        while (length) {
+            let row: Product[] = [];
+            if (length >= 3) {
+                for (let i = 0; i < 3; i++) {
+                    row.push(source[index++]);
+                }
+                products.push(row);
+                length -= 3;
+            } else {
+                for ( ; length > 0; length--) {
+                    row.push(source[index++]);
+                }
+                products.push(row);
+            }
+        }
+
+        return products;
+    }
+
+    addToCart(product: Product) {
+        this.cartService.addProduct(product);
+    }
+}

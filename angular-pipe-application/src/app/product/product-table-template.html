@@ -1,0 +1,64 @@
+<div>
+    <h5>Custom Pipe Example</h5>
+    <label>Tax Rate:</label>
+    <select [value]="taxRate || 0" (change)="taxRate=$event.target.value">
+        <option value="0">None</option>
+        <option value="10">{{ 0.1 | percent}}</option>
+        <option value="20">{{ 0.2 | percent}}</option>
+        <option value="50">{{ 0.5 | percent}}</option>
+        <option value="150">{{ 1.5 | percent}}</option>
+    </select>
+</div>
+
+<h5>Filter Pipe Example</h5>
+<div>
+    <label>Category Filter:</label>
+    <select [(ngModel)]="categoryFilter">
+        <option>Watersports</option>
+        <option>Soccer</option>
+        <option>Chess</option>
+    </select>
+</div>
+
+<h5>Date Pipe Example</h5>
+<div class="bg-info m-a-1 p-a-1">
+    <div>Date formatted from object: {{ dateObject | date:"shortDate"}}</div>
+    <div>Date formatted from string: {{ dateString | date:"mediumDate"}}</div>
+    <div>Date formatted from number: {{ dateNumber | date:"longDate"}}</div>
+</div>
+
+<h5>JSON Pipe Example</h5>
+<div class="bg-info m-a-1 p-a-1">
+    <div>{{getProducts() | json}}</div>
+</div>
+
+<h5>Slice Pipe Example</h5>
+<div>
+    <label>Number of items:</label>
+    <select [value]="itemCount || 1" (change)="itemCount=$event.target.value">
+        <option *ngFor="let item of getProducts();let i=index" [value]="i + 1">{{i +1}}</option>
+    </select>
+</div>
+
+<div class="table table-xl table-bordered table-striped">
+    <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th></th>
+    </tr>
+    <tr *ngFor="let item of getProducts() | slice:0:(itemCount || 1) | filter:categoryFilter; let i=index; let odd=odd; let even=even;" [class.bg-info]="odd" [class.bg-warning]="even">
+        <td style="vertical-align:middle">{{i + 1}}</td>
+        <td style="vertical-align:middle">{{item.name | uppercase}}</td>
+        <td style="vertical-align:middle">{{item.category | lowercase}}</td>
+        <td style="vertical-align:middle">
+            {{item.price | addTax:(taxRate || 0) | currency: "INR" : true : "2.2-2"}}
+        </td>
+        <td class="text-xs-center">
+            <button class="btn btn-danger btn-sm" (click)="deleteProduct(item.id)">
+                Delete
+            </button>
+        </td>
+    </tr>
+</div>

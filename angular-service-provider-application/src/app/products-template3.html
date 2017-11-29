@@ -1,0 +1,71 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col-xl-12">
+            <h1 class="badge-primary text-info">Angular Structural Directive Application</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <!--First Column-->
+        <div class="col-xl-4">    
+            <form novalidate [formGroup]="form" (ngSubmit)="submitForm(form)">
+                <div class="form-group" *ngFor="let control of form.productControls" >
+                    <label>{{control.label}}</label>
+                    <input class="form-control"
+                        name="{{control.modelProperty}}"
+                        formControlName="{{control.modelProperty}}"           
+                        [(ngModel)]="newProduct[control.modelProperty]"/>
+                    <ul class="text-danger list-unstyled" *ngIf="(formSubmitted || control.dirty) && control.invalid">
+                        <li *ngFor="let error of control.getValidationMessages()">
+                            {{error}}
+                        </li>
+                    </ul>
+                </div>      
+                <button class="btn btn-primary" type="submit" 
+                        [disabled]="form.invalid"
+                        [class.btn-secondary]="form.invalid">Create</button>
+            </form>
+        </div>
+        
+        <!--Second Column-->
+        <div class="col-xl-8">
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" [(ngModel)]="showTable"/>Show Table
+                </label>
+            </div>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" [(ngModel)]="darkColor"/>Dark Cell Color
+                </label>
+            </div>
+
+            <!--<template [paIf]="showTable">-->
+                <table *paIf="showTable" [paCellDarkColor]="darkColor" class="table table-sm table-bordered table-striped">
+                    <tr>
+                        <th></th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th></th>
+                    </tr>
+                    <ng-template [paForOf]="getProducts()" let-item let-i="index" let-odd="odd" let-even="even">
+                        <!--<tr *ngFor="let item of getProducts(); let i=index; let odd=odd; let even=even;"  [class.bg-info]="odd" [class.bg-warning]="even">-->
+                        <tr  [class.bg-info]="odd" [class.bg-warning]="even">
+                            <td style="vertical-align: middle">{{i + 1}}</td>
+                            <td style="vertical-align: middle">{{item.name}}</td>
+                            <td style="vertical-align: middle">{{item.category}}</td>
+                            <td style="vertical-align: middle">{{item.price}}</td>
+                            <td class="text-xs-center">
+                                <button class="btn btn-danger btn-sm" (click)="deleteProduct(item.id)">Delete</button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </table>
+            <!--</template>-->
+        </div>
+    </div>
+</div>

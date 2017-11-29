@@ -1,0 +1,16 @@
+import { NgDependencyInjectionApplicationPage } from './app.po';
+
+describe('ng-dependency-injection-application App', () => {
+  let page: NgDependencyInjectionApplicationPage;
+
+  beforeEach(() => {
+    page = new NgDependencyInjectionApplicationPage();
+  });
+
+  it('should display welcome message', done => {
+    page.navigateTo();
+    page.getParagraphText()
+      .then(msg => expect(msg).toEqual('Welcome to app!!'))
+      .then(done, done.fail);
+  });
+});
