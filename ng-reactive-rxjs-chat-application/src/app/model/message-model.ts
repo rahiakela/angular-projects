@@ -1,6 +1,6 @@
 import { User } from "./user-model";
 import { Thread } from "./thread-model";
-import { UUID } from "angular2-uuid";
+import { uuid } from './../util/uuid';
 
 
 // Message represents one message being sent in a Thread
@@ -13,7 +13,7 @@ export class Message {
     thread: Thread;
 
     constructor(obj?: any) {
-        this.id         = obj && obj.id         || UUID.UUID();
+        this.id         = obj && obj.id         || uuid();
         this.isRead     = obj && obj.isRead     || false;
         this.sentAt     = obj && obj.sentAt     || new Date();
         this.author     = obj && obj.author     || null;

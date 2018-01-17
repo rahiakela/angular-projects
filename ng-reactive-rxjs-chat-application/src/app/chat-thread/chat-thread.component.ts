@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Thread } from '../model/thread-model';
-import { Input } from '@angular/core/src/metadata/directives';
 import { ThreadsService } from '../service/threads-service.service';
 
 @Component({

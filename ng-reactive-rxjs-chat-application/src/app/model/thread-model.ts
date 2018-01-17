@@ -1,5 +1,5 @@
 import { Message } from "./message-model";
-import { UUID } from "angular2-uuid";
+import { uuid } from './../util/uuid';
 
 // Thread represents a group of Users exchanging Messages
 export class Thread {
@@ -9,7 +9,7 @@ export class Thread {
     avatarSrc: string;
 
     constructor(id?: string, name?: string, avatarSrc?: string){
-        this.id         = id || UUID.UUID();
+        this.id         = id || uuid();
         this.name       = name;
         this.avatarSrc  =   avatarSrc;
     }
