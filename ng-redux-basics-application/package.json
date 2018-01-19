@@ -1,0 +1,13 @@
+{
+  "name": "ng-redux-basics-application",
+  "version": "0.0.0",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "ts-node": "2.1.0",
+    "typescript": "^2.6.2"
+  },
+  "dependencies": {
+    "redux": "3.5.2"
+  }
+}
