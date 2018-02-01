@@ -1,6 +1,8 @@
 import { Thread } from "../model/thread-model";
 import { Action } from "redux";
 import * as ThreadActions from "./thread.actions";
+import { createSelector } from "reselect";
+import { Message } from "../model/message-model";
 
 /*******Thread State Branch**************
  * this branch of the state tree could hold information about all of the threads
@@ -82,7 +84,7 @@ export const ThreadsReducer = (state: ThreadsState = initialState, action: Actio
 
         // Select a particular thread in the UI
         case ThreadActions.SELECT_THREAD: {
-            const thread = (<ThreadActions.SelectThreadAction>action).type;
+            const thread = (<ThreadActions.SelectThreadAction>action).thread;
             const oldThread = state.entities[thread.id];
 
             // mark the messages as read
@@ -101,4 +103,27 @@ export const ThreadsReducer = (state: ThreadsState = initialState, action: Actio
         default:
             return state;
     }
-}
+};
+
+export const getThreadsState = (state): ThreadsState => state.threads;
+
+export const getThreadsEntities = createSelector(getThreadsState, (state: ThreadsState) => state.entities);
+
+export const getAllThreads = createSelector(getThreadsEntities, (entities: ThreadsEntities) => Object.keys(entities).map((threadId) => entities[threadId]));
+
+export const getUnreadMessagesCount = createSelector(getAllThreads, (threads: Thread[]) => threads.reduce((unreadCount: number, thread: Thread) => {
+    thread.messages.forEach((message: Message) => {
+        if (!message.isRead) {
+            ++unreadCount;
+        }
+    });
+    return unreadCount;
+}, 0));
+
+// This selector emits the current thread
+export const getCurrentThread = createSelector(getThreadsEntities, getThreadsState, (entities: ThreadsEntities, state: ThreadsState) => entities[state.currentThreadId]);
+
+//gather all messages and sort them by time
+export const getAllMessages = createSelector(getAllThreads, (threads: Thread[]) => threads.reduce(
+    (messages, thread) => [...messages, ...thread.messages], []).sort((m1, m2) => m1.sentAt - m2.sentAt)
+);
