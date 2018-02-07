@@ -3,10 +3,11 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { InlineStyleComponent } from './inline-style/inline-style.component';
-import { ExternalStyleComponent } from './external-style/external-style.component';
-import { NativeEncapsulationComponent } from './native-encapsulation/native-encapsulation.component';
-import { NoEncapsulationComponent } from './no-encapsulation/no-encapsulation.component';
+import { InlineStyleComponent } from './styling/inline-style/inline-style.component';
+import { ExternalStyleComponent } from './styling/external-style/external-style.component';
+import { NativeEncapsulationComponent } from './styling/native-encapsulation/native-encapsulation.component';
+import { NoEncapsulationComponent } from './styling/no-encapsulation/no-encapsulation.component';
+import { HostModule } from './host/host.module';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { NoEncapsulationComponent } from './no-encapsulation/no-encapsulation.co
     NoEncapsulationComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HostModule
   ],
   providers: [],
   bootstrap: [AppComponent]
