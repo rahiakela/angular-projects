@@ -10,6 +10,10 @@ import { ContentProjectionDemoComponent } from './content-projection-demo/conten
   declarations: [
     ContentProjectionDemoComponent,
     MessageComponent
+  ],
+  exports: [
+    ContentProjectionDemoComponent,
+    MessageComponent
   ]
 })
 export class ContentProjectionModule { }
