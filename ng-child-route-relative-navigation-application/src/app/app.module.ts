@@ -3,16 +3,20 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { AddCountryComponent } from './add-country/add-country.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { CountryModule } from './country/country.module';
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AddCountryComponent
+    PageNotFoundComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    CountryModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

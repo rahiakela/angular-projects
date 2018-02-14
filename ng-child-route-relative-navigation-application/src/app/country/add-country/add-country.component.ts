@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { CountryService } from '../service/country.service';
-import { FormControl } from '@angular/forms/src/model';
 import { Country } from '../country';
 
 

@@ -3,7 +3,7 @@ import { Country } from '../../country';
 import { CountryService } from '../../service/country.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
-import { FormGroup, FormControl } from '@angular/forms/src/model';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-country-edit',
