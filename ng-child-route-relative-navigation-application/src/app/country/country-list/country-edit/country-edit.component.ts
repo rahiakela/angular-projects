@@ -14,6 +14,12 @@ export class CountryEditComponent implements OnInit {
 
   country: Country;
 
+  countryForm = new FormGroup({
+    name: new FormControl(),
+    capital: new FormControl(),
+    currency: new FormControl()
+  });
+
   constructor(private countryService: CountryService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
@@ -25,18 +31,12 @@ export class CountryEditComponent implements OnInit {
           });
   }
 
-  countryForm = new FormGroup({
-    name: new FormControl(),
-    capital: new FormControl(),
-    currency: new FormControl()
-  });
-
   setFormValues() {
     this.countryForm.setValue(
       {
-        name: this.country.countryName, 
+        name: this.country.countryName,
         capital: this.country.capital,
-        currency: this.country.currency 
+        currency: this.country.currency
       }
     );
   }
