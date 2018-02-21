@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from "@angular/forms";
 
 
 import { AppComponent } from './app.component';
@@ -10,6 +11,9 @@ import { NoEncapsulationComponent } from './styling/no-encapsulation/no-encapsul
 import { HostModule } from './host/host.module';
 import { ContentProjectionModule } from './content-projection/content-projection.module';
 import { TabsModule } from './tabs/tabs.module';
+import { DefaultChangeDetectionComponent } from './change-detection/default-change-detection.component';
+import { OnPushChangeDetectionComponent } from './change-detection/on-push-change-detection.component';
+import { OnPushDemoComponent } from './change-detection/on-push-demo.component';
 
 
 @NgModule({
@@ -18,10 +22,14 @@ import { TabsModule } from './tabs/tabs.module';
     InlineStyleComponent,
     ExternalStyleComponent,
     NativeEncapsulationComponent,
-    NoEncapsulationComponent
+    NoEncapsulationComponent,
+    DefaultChangeDetectionComponent,
+    OnPushChangeDetectionComponent,
+    OnPushDemoComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     TabsModule
   ],
   providers: [],
