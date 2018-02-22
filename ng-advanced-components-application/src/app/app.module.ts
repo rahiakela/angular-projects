@@ -14,6 +14,8 @@ import { TabsModule } from './tabs/tabs.module';
 import { DefaultChangeDetectionComponent } from './change-detection/default-change-detection.component';
 import { OnPushChangeDetectionComponent } from './change-detection/on-push-change-detection.component';
 import { OnPushDemoComponent } from './change-detection/on-push-demo.component';
+import { ObservableChangeDetectionComponent } from './change-detection/observable-change-detection/observable-change-detection.component';
+import { ObservablesDemoComponent } from './change-detection/observable-change-detection/observables-demo.component';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { OnPushDemoComponent } from './change-detection/on-push-demo.component';
     NoEncapsulationComponent,
     DefaultChangeDetectionComponent,
     OnPushChangeDetectionComponent,
-    OnPushDemoComponent
+    OnPushDemoComponent,
+    ObservableChangeDetectionComponent,
+    ObservablesDemoComponent
   ],
   imports: [
     BrowserModule,
