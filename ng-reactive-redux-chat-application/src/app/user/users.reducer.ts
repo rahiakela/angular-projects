@@ -11,7 +11,7 @@ import { createSelector } from "reselect";
  */
 export interface UsersState {
     currentUser: User;
-};
+}
 
 const initialState: UsersState = {
     currentUser: null
@@ -19,7 +19,7 @@ const initialState: UsersState = {
 
 export const UsersReducer = (state: UsersState = initialState, action: Action): UsersState => {
 
-    switch(action.type) {
+    switch (action.type) {
         case UserActions.SET_CURRENT_USER:
             const user: User = (<UserActions.SetCurrentUserAction>action).user;
             return {

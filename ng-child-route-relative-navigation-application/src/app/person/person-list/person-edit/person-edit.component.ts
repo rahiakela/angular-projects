@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Person } from '../../person';
 import { PersonService } from '../../person.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
-import { FormGroup, FormControl } from "@angular/forms";
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-person-edit',
@@ -29,9 +29,9 @@ export class PersonEditComponent implements OnInit {
   }
 
   setFormValues() {
-    this.personForm.setValue({ 
-      name: this.person.name, 
-      city: this.person.city 
+    this.personForm.setValue({
+      name: this.person.name,
+      city: this.person.city
     });
   }
 

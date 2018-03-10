@@ -12,7 +12,7 @@ const countryRoutes: Routes = [
     path: 'country', component: CountryComponent,
     children: [
       { path: 'add', component: AddCountryComponent },
-      { 
+      {
         path: 'list', component: CountryListComponent,
         children: [
           { path: 'view/:country-id', component: CountryDetailComponent },
