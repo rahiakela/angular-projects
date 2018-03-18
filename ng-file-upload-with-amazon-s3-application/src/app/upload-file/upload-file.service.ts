@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import * as AWS from "aws-sdk";
-import * as S3 from "aws-sdk/clients/s3";
+import * as AWS from 'aws-sdk';
+import * as S3 from 'aws-sdk/clients/s3';
 
 @Injectable()
 export class UploadFileService {
@@ -32,6 +32,6 @@ export class UploadFileService {
       console.log('Successfully uploaded file.', data);
       return true;
     });
-    
+
   }
 }
