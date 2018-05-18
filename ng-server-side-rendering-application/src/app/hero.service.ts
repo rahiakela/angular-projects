@@ -1,13 +1,12 @@
-import {Inject, Injectable, Optional} from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable, Inject, Optional } from '@angular/core';
+import { APP_BASE_HREF } from '@angular/common';
+import { HttpClient, HttpHeaders }from '@angular/common/http';
 
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
+import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Hero } from './hero';
 import { MessageService } from './message.service';
-import {APP_BASE_HREF} from '@angular/common';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -22,8 +21,8 @@ export class HeroService {
     private http: HttpClient,
     private messageService: MessageService,
     @Optional() @Inject(APP_BASE_HREF) origin: string) {
-    this.heroesUrl = `${origin}${this.heroesUrl}`;
-  }
+      this.heroesUrl = `${origin}${this.heroesUrl}`;
+    }
 
   /** GET heroes from the server */
   getHeroes (): Observable<Hero[]> {
@@ -63,7 +62,7 @@ export class HeroService {
       // if not search term, return empty hero array.
       return of([]);
     }
-    return this.http.get<Hero[]>(`api/heroes/?name=${term}`).pipe(
+    return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`).pipe(
       tap(_ => this.log(`found heroes matching "${term}"`)),
       catchError(this.handleError<Hero[]>('searchHeroes', []))
     );
@@ -72,7 +71,9 @@ export class HeroService {
   //////// Save methods //////////
 
   /** POST: add a new hero to the server */
-  addHero (hero: Hero): Observable<Hero> {
+  addHero (name: string): Observable<Hero> {
+    const hero = { name };
+
     return this.http.post<Hero>(this.heroesUrl, hero, httpOptions).pipe(
       tap((hero: Hero) => this.log(`added hero w/ id=${hero.id}`)),
       catchError(this.handleError<Hero>('addHero'))

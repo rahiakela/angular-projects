@@ -1,0 +1,10 @@
+@import '~scss/styles';
+
+.bg-primary-color-dark {
+    color: $light-color;
+    background-color: $primary-color-dark;
+}
+
+.navbar-toggler {
+    color: $light-color;
+}

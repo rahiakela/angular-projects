@@ -1,0 +1,48 @@
+@import '~scss/styles';
+
+.bg-primary-color {
+    background-color: $primary-color;
+    color: $light-color;
+}
+
+.navbar {
+    @include nav-justified;
+    padding-top: 0;
+    padding-bottom: 0;
+
+    @include media-breakpoint-down(sm){
+        .nav-item + nav-item{
+            margin-left: 0;
+        }
+    }
+
+    .nav-link {
+        position: relative;
+        &.active,
+        &:hover {
+            background-color: $accent-color;
+        }
+
+        @include media-breakpoint-up(md){
+            &.active{
+                &::before{
+                    @include triangle(bottom, $accent-color);
+                    position: absolute;
+                    margin-left: -1em;
+                    left: 50%;
+                    top: 100%;
+                }
+            }
+        }
+    }
+    
+    .your-photo{
+        display: none;
+        @include media-breakpoint-up(md){
+            display: block;
+            position: absolute;
+            top: -100%;
+            z-index: block;
+        }
+    }
+}

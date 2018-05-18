@@ -1,0 +1,15 @@
+@import '~scss/styles';
+
+.main-content {
+    h1,
+    h2,
+    h3 {
+        color:$primary-color;
+    }
+}
+
+main {
+    article {
+        padding-top:$spacer-y;
+    }
+}
