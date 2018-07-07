@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {PostsService} from '../../service/posts.service';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'app-posts',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostsComponent implements OnInit {
 
-  constructor() { }
+  public posts = [];
+
+  constructor(private route: ActivatedRoute,
+              private postsService: PostsService) { }
 
   ngOnInit() {
+    this.postsService.getPosts()
+      .map(res => res['items'])
+      .subscribe((result: any) => this.posts = result);
   }
 
 }

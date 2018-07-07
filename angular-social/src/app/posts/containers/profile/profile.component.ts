@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {PostsService} from '../../service/posts.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  public profile = {id: null};
+
+  constructor(private route: ActivatedRoute,
+              private postsService: PostsService) { }
 
   ngOnInit() {
+    this.postsService.getProfile(this.route.snapshot.params['profileId'])
+      .subscribe((result: any) => this.profile = result);
   }
 
 }

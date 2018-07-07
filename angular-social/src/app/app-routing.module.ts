@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core'
-import { RouterModule, Routes } from '@angular/router'
-import { LayoutComponent } from './ui/components/layout/layout.component'
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { LayoutComponent } from './ui/components/layout/layout.component';
 
 const routes: Routes = [
   {
@@ -11,7 +11,7 @@ const routes: Routes = [
       { path: 'posts', loadChildren: './posts/posts.module#PostsModule' },
     ],
   },
-]
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
