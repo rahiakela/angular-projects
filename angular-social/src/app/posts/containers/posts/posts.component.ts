@@ -1,24 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {PostsService} from '../../service/posts.service';
-import 'rxjs/add/operator/map';
+import { Component, OnInit } from '@angular/core'
+import { ActivatedRoute } from '@angular/router'
+import 'rxjs/add/operator/map'
 
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
-  styleUrls: ['./posts.component.css']
+  styleUrls: ['./posts.component.css'],
 })
 export class PostsComponent implements OnInit {
+  public posts: any
 
-  public posts = [];
-
-  constructor(private route: ActivatedRoute,
-              private postsService: PostsService) { }
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.postsService.getPosts()
-      .map(res => res['items'])
-      .subscribe((result: any) => this.posts = result);
+    this.route.data
+      .map(data => data['posts'])
+      .map(data => data['items'])
+      .subscribe((result: any) => (this.posts = result))
   }
-
 }
