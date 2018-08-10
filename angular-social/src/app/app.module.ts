@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { UiModule } from './ui/ui.module';
 import { HttpClientModule } from '@angular/common/http';
 import { isPlatformBrowser } from '@angular/common';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,6 +16,7 @@ import { isPlatformBrowser } from '@angular/common';
     HttpClientModule,
     UiModule,
     AppRoutingModule,
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [],
   bootstrap: [AppComponent],
