@@ -1,14 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-
 import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MainComponent } from './components/main/main.component';
 import {MaterialModule} from './imports/material.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { LandingComponent } from './components/landing/landing.component';
-import {RouterModule} from "@angular/router";
+import {RouterModule} from '@angular/router';
 
 
 @NgModule({
@@ -18,7 +17,7 @@ import {RouterModule} from "@angular/router";
         LandingComponent,
     ],
     imports: [
-        BrowserModule,
+        BrowserModule.withServerTransition({ appId: 'serverApp' }),
         RouterModule.forRoot([
             {
                 path:'',

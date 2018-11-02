@@ -1,0 +1,12 @@
+{
+  "universal": {
+    "skipInstall": false,
+    "directory": ".",
+    "project": "ng-seo-application"
+  },
+  "pwa": {
+    "skipInstall": false,
+    "directory": ".",
+    "project": "ng-seo-application"
+  }
+}

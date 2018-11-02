@@ -4,8 +4,10 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build --prod",
+    "start": "ts-node ./server",
+    "build": "npm run build:browser && npm run build:server",
+    "build:browser": "ng build --prod --app browser",
+    "build:server": "ng build --prod --app server --output-hashing=false",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -23,14 +25,18 @@
     "@angular/material": "^5.2.4",
     "@angular/platform-browser": "^5.2.0",
     "@angular/platform-browser-dynamic": "^5.2.0",
+    "@angular/platform-server": "^5.2.0",
     "@angular/router": "^5.2.0",
+    "@nguniversal/module-map-ngfactory-loader": "^5.0.0",
+    "@nguniversal/express-engine": "^5.0.0",
     "core-js": "^2.4.1",
     "hammerjs": "^2.0.8",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.19"
   },
   "devDependencies": {
-    "@angular/cli": "~1.7.1",
+    "@angular-devkit/build-angular": "~0.7.0",
+    "@angular/cli": "^6.1.1",
     "@angular/compiler-cli": "^5.2.0",
     "@angular/language-service": "^5.2.0",
     "@types/jasmine": "~2.8.3",
